@@ -33,8 +33,8 @@ pub fn get_vig_level(vig: f32) -> String {
   return level;
 }
 pub fn get_real_odds(fav: f32, ud: f32) {
-  let favorite: f32 = fav / (fav + ud);
-  let underdog: f32 = ud / (fav + ud);
+  let favorite: f32 = fav / (fav + ud) * 100.0;
+  let underdog: f32 = ud / (fav + ud) * 100.0;
   println!("Favorite Real Odds: {}{}", favorite.to_string().red(), "%".red());
   println!("Underdog Real Odds: {}{}", underdog.to_string().red(), "%".red());
 }
