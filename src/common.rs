@@ -38,11 +38,25 @@ pub fn get_real_odds(fav: f32, ud: f32) {
   println!("Favorite Real Odds: {}{}", favorite.to_string().red(), "%".red());
   println!("Underdog Real Odds: {}{}", underdog.to_string().red(), "%".red());
 }
+pub fn get_payouts(ud: f32, fav: f32, bet: f32) {
+  let newfav: f32 = fav * -1.0;
+  let favorite: f32 = (bet / newfav) * 100.0;
+  let underdog: f32 = (bet * ud) / 100.0;
+
+  let fav_total: f32 = bet + favorite;
+  let ud_total: f32 = bet + underdog;
+  println!("Favorite Profit: {}", favorite.to_string().green());
+  println!("Favorite Total: {}", fav_total.to_string().yellow());
+  println!("Underdog Profit: {}", underdog.to_string().green());
+  println!("Underdog Total: {}", ud_total.to_string().yellow());
+}
+// +350 1.13  bet * ud/100
+// -455 .30 
 pub fn help() {
-  println!("{}{}{}{}{}{}", "Need to Pass in Underdog and Favorite\n".yellow(),
+  println!("{}{}{}{}{}{}{}", "Need to Pass in Underdog, Favorite and Bet\n".yellow(),
 "usage:
-cargo run <underdog> <favorite>\n".cyan(),
+cargo run <underdog> <favorite> <bet>\n".cyan(),
 "The underdog is the positive number and the favorite is the negative number\n".yellow(),
 "example:
-cargo run ".cyan(), "+250 ".red().bold(), "-260".red().bold());
+cargo run ".cyan(), "+250 ".red().bold(), "-260".red().bold(), "1.50".red().bold());
 }
